@@ -7,7 +7,7 @@ WORKDIR /usr/src
 RUN git clone https://github.com/gost-engine/engine.git gostengine
 WORKDIR /usr/src/gostengine
 
-# should make these patches, otherwise will get cmake build errors
+# should make these patches, otherwise will get cmake build errors, see details: https://github.com/gost-engine/engine/issues/322
 RUN sed -i -e 's/^install(TARGETS gostsum gost12sum)/install(TARGETS gostsum gost12sum DESTINATION ${OPENSSL_ENGINES_DIR})/' CMakeLists.txt
 RUN sed -i -e 's/^install(TARGETS lib_gost_engine EXPORT GostEngineConfig)/install(TARGETS lib_gost_engine EXPORT GostEngineConfig LIBRARY DESTINATION ${OPENSSL_ENGINES_DIR})/' CMakeLists.txt
 
