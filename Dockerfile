@@ -7,10 +7,6 @@ WORKDIR /usr/src
 RUN git clone https://github.com/gost-engine/engine.git gostengine
 WORKDIR /usr/src/gostengine
 
-# should make these patches, otherwise will get cmake build errors, see details: https://github.com/gost-engine/engine/issues/322
-RUN sed -i -e 's/^install(TARGETS gostsum gost12sum)/install(TARGETS gostsum gost12sum RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})/' CMakeLists.txt
-RUN sed -i -e 's/^install(TARGETS lib_gost_engine EXPORT GostEngineConfig)/install(TARGETS lib_gost_engine EXPORT GostEngineConfig LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})/' CMakeLists.txt
-
 RUN mkdir build
 WORKDIR /usr/src/gostengine/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR} -DOPENSSL_LIBRARIES=${OPENSSL_ROOT_DIR}/lib -DOPENSSL_ENGINES_DIR=${OPENSSL_ROOT_DIR}/lib/engines-3 ..
