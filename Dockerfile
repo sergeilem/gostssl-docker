@@ -15,4 +15,3 @@ RUN cmake --build . --config Release && cmake --build . --target install --confi
 # final stage
 FROM debian:buster-slim
 COPY --from=build /usr/gostssl /usr/gostssl
-#
