@@ -1,4 +1,4 @@
-FROM sergeilem/openssl as build
+FROM ghcr.io/sergeilem/openssl as build
 
 RUN apt update && apt install -y build-essential gcc wget git cmake unzip perl
 
