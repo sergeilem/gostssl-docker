@@ -15,7 +15,8 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release -DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR} -DOP
 RUN cmake --build . --config Release && cmake --build . --target install --config Release
 
 # final stage
-FROM ubuntu:latest
+FROM ubuntu:rolling
 ENV TZ=Europe/Moscow
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY --from=build /usr/gostssl /usr/gostssl
+#
